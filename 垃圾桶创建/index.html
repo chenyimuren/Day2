@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			
+			.dele{
+				width: 400px;
+				height: 260px;
+				margin: 20px auto 0;
+				border: 1px solid red;
+				padding: 20px;
+			}
+			.over{overflow: hidden;zoom: 1;}
+			.carbin{
+				float: left;
+			}
+			.content{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			ul{float: right;
+			margin-right: 150px;}
+			ul li{
+				line-height: 30px;
+				/*padding-left: 60px;*/
+			}
+			
+			.content li:hover{
+				background-color:gainsboro;
+			}
+			
+			
+			
+		</style>
+	</head>
+	<body>
+		
+		<div class="dele">
+			
+			<div class="carbin over">
+				<img src="img/trash1.png"/>
+			</div>
+			<ul class="content">
+				<li draggable="true">《数学》</li>
+				<li draggable="true">《语文》</li>
+				<li draggable="true">《英语》</li>
+				<li draggable="true">《物理》</li>
+				<li draggable="true">《化学》</li>
+				<li draggable="true">《生物》</li>
+				<li draggable="true">《历史》</li>
+				<li draggable="true">《地理》</li>
+				<li draggable="true">《政治》</li>
+			</ul>
+		</div>
+		<ul class="trush"></ul>
+		<script type="text/javascript">
+			
+		var contents = document.querySelectorAll(".content li");
+		var carbin = document.querySelector(".carbin")
+		var trush = document.querySelector(".trush")
+		var temp = null;	
+		for(var i = 0; i < contents.length; i++){
+			
+			contents[i].ondragstart = function(e){
+				temp = this;
+			}
+			contents[i].ondragend = function(e){
+				temp = null;
+			}
+		}
+		
+		carbin.ondragover = function(e){
+			e.preventDefault();
+		}
+		  
+		carbin.ondrop = function(e){
+			
+			trush.appendChild(temp);
+			
+			this.children[0].setAttribute("src","img/trash2.jpg");
+		}
+		
+		</script>
+	</body>
+</html>
